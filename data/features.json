@@ -1,0 +1,115 @@
+[
+  {
+    "id": "f101-dark-mode",
+    "title": "Dark Mode & Custom Theme Support",
+    "description": "Add support for an automated dark theme based on system preferences, with an explicit toggle in the navigation bar and customizable accent colors.",
+    "category": "ui/ux",
+    "status": "completed",
+    "votes": 42,
+    "voters": [
+      "user-seed-1",
+      "user-seed-2",
+      "user-seed-3"
+    ],
+    "author": "Priya Sharma",
+    "createdAt": "2026-11-01T10:30:00.000Z",
+    "updatedAt": "2026-11-10T14:20:00.000Z",
+    "comments": [
+      {
+        "id": "c101",
+        "author": "Alex Chen",
+        "content": "This was the most requested feature! Looks incredible in dark mode.",
+        "createdAt": "2026-11-11T09:15:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "f102-oauth-login",
+    "title": "OAuth Social Login (GitHub & Google)",
+    "description": "Allow users to log in seamlessly with GitHub or Google accounts instead of creating manual passwords, enabling automatic avatar and profile sync.",
+    "category": "feature",
+    "status": "planned",
+    "votes": 35,
+    "voters": [
+      "user-seed-1",
+      "user-seed-4"
+    ],
+    "author": "Liam Vance",
+    "createdAt": "2026-11-03T11:45:00.000Z",
+    "updatedAt": "2026-11-08T16:00:00.000Z",
+    "comments": [
+      {
+        "id": "c102",
+        "author": "Sarah Miller",
+        "content": "GitHub OAuth is essential for developer workflows. Please support both GitHub and Google.",
+        "createdAt": "2026-11-05T18:22:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "f103-export-csv",
+    "title": "Export Analytics & Feedback to CSV and JSON",
+    "description": "Provide a 1-click export button for project admins to download all submitted feedback, vote counts, and user remarks in CSV and JSON formats.",
+    "category": "feature",
+    "status": "in-progress",
+    "votes": 28,
+    "voters": [
+      "user-seed-2",
+      "user-seed-5"
+    ],
+    "author": "Marcus Brody",
+    "createdAt": "2026-11-06T14:10:00.000Z",
+    "updatedAt": "2026-11-12T08:30:00.000Z",
+    "comments": []
+  },
+  {
+    "id": "f104-webhook-notifs",
+    "title": "Discord & Slack Webhook Notifications",
+    "description": "Trigger an automated message to a designated Discord channel or Slack incoming webhook whenever a new feedback item is posted or status is updated.",
+    "category": "integration",
+    "status": "under-review",
+    "votes": 19,
+    "voters": [
+      "user-seed-3"
+    ],
+    "author": "Elena Rostova",
+    "createdAt": "2026-11-09T09:00:00.000Z",
+    "updatedAt": "2026-11-09T09:00:00.000Z",
+    "comments": [
+      {
+        "id": "c103",
+        "author": "Jordan Patel",
+        "content": "Would love Slack notifications whenever a status changes to 'planned'.",
+        "createdAt": "2026-11-10T12:05:00.000Z"
+      }
+    ]
+  },
+  {
+    "id": "f105-mobile-table-overflow",
+    "title": "Fix Horizontal Overflow on Mobile Screens",
+    "description": "On viewport widths under 420px, the filter tabs causes slight horizontal scroll. Need to convert tab row to a scrollable pill container or dropdown.",
+    "category": "bug",
+    "status": "planned",
+    "votes": 14,
+    "voters": [
+      "user-seed-6"
+    ],
+    "author": "Rohan Das",
+    "createdAt": "2026-11-12T13:20:00.000Z",
+    "updatedAt": "2026-11-13T10:15:00.000Z",
+    "comments": []
+  },
+  {
+    "id": "f106-rich-text-editor",
+    "title": "Markdown Preview Support in Feature Descriptions",
+    "description": "Enable basic markdown rendering (bold, code blocks, bullet points) in feature descriptions and comments for cleaner technical proposals.",
+    "category": "enhancement",
+    "status": "under-review",
+    "votes": 9,
+    "voters": [],
+    "author": "Dev Team",
+    "createdAt": "2026-11-14T15:40:00.000Z",
+    "updatedAt": "2026-11-14T15:40:00.000Z",
+    "comments": []
+  }
+]

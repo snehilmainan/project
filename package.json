@@ -1,0 +1,24 @@
+{
+  "name": "upvote-board",
+  "version": "1.0.0",
+  "description": "Product Feedback & Feature Request Board built with pure Node.js REST API and clean modern UI",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node tests/api.test.js"
+  },
+  "keywords": [
+    "nodejs",
+    "rest-api",
+    "zero-dependency",
+    "feedback-board",
+    "product-management"
+  ],
+  "author": "Snehil Mainan",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

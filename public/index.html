@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UpVote — Feature Requests & Feedback</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="min-h-full flex flex-col font-sans bg-slate-50 text-slate-800 antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-sm border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Logo & Title -->
+      <div class="flex items-center space-x-3">
+        <div class="w-9 h-9 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-sm">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/>
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center space-x-2">
+            <h1 class="text-lg font-bold text-slate-900 tracking-tight">UpVote</h1>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-brand-50 text-brand-700">Roadmap</span>
+          </div>
+          <p class="text-xs text-slate-500 hidden sm:block">Community feature requests & feedback</p>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center space-x-3">
+        <button id="adminToggleBtn" class="px-3 py-1.5 text-xs font-semibold rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-100 transition-colors">
+          <span id="adminStatusText">Admin Mode</span>
+        </button>
+
+        <button id="openSubmitModalBtn" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs sm:text-sm font-semibold rounded-xl bg-brand-600 hover:bg-brand-700 active:scale-95 text-white shadow-sm transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+          </svg>
+          <span>Suggest Idea</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-8 space-y-6">
+
+    <!-- Clean Metric Highlights -->
+    <section class="grid grid-cols-2 sm:grid-cols-5 gap-3" id="statsBar">
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+        <span class="text-xs font-medium text-slate-500">Total Ideas</span>
+        <span class="text-2xl font-bold text-slate-900 mt-1" id="statTotal">-</span>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+        <span class="text-xs font-medium text-amber-700 flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+          <span>Under Review</span>
+        </span>
+        <span class="text-2xl font-bold text-slate-900 mt-1" id="statReview">-</span>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+        <span class="text-xs font-medium text-sky-700 flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-sky-500"></span>
+          <span>Planned</span>
+        </span>
+        <span class="text-2xl font-bold text-slate-900 mt-1" id="statPlanned">-</span>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between">
+        <span class="text-xs font-medium text-indigo-700 flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-indigo-500"></span>
+          <span>In Progress</span>
+        </span>
+        <span class="text-2xl font-bold text-slate-900 mt-1" id="statProgress">-</span>
+      </div>
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs flex flex-col justify-between col-span-2 sm:col-span-1">
+        <span class="text-xs font-medium text-emerald-700 flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Completed</span>
+        </span>
+        <span class="text-2xl font-bold text-slate-900 mt-1" id="statCompleted">-</span>
+      </div>
+    </section>
+
+    <!-- Filter & Search Controls -->
+    <section class="bg-white rounded-2xl border border-slate-200 p-4 shadow-xs space-y-3.5">
+      
+      <!-- Status Tabs -->
+      <div class="flex items-center space-x-1 overflow-x-auto pb-1 border-b border-slate-100" id="statusTabs">
+        <button data-status="all" class="filter-tab active px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">All</button>
+        <button data-status="under-review" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">Under Review</button>
+        <button data-status="planned" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">Planned</button>
+        <button data-status="in-progress" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">In Progress</button>
+        <button data-status="completed" class="filter-tab px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all">Completed</button>
+      </div>
+
+      <!-- Search, Category & Sort Row -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <!-- Search -->
+        <div class="relative flex-1">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Search feature requests, bugs, keywords..." class="w-full pl-9 pr-8 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 transition-all">
+          <button id="clearSearchBtn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <!-- Category & Sort Dropdowns -->
+        <div class="flex items-center space-x-2 shrink-0">
+          <select id="categorySelect" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+            <option value="all">All Categories</option>
+            <option value="feature">Feature</option>
+            <option value="bug">Bug</option>
+            <option value="enhancement">Enhancement</option>
+            <option value="ui/ux">UI / UX</option>
+            <option value="integration">Integration</option>
+          </select>
+
+          <select id="sortSelect" class="px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+            <option value="votes">Most Upvoted</option>
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Feature Cards List -->
+    <section class="space-y-3" id="featuresList">
+      <div class="bg-white rounded-2xl border border-slate-200 p-8 text-center text-slate-400">
+        Loading ideas...
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Submit Idea Modal -->
+  <div id="submitModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs hidden opacity-0 transition-opacity duration-150">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 shadow-xl border border-slate-200 transform scale-95 transition-transform duration-150" id="submitModalContent">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="text-base font-bold text-slate-900">Suggest a Feature</h3>
+        <button id="closeSubmitModalBtn" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">✕</button>
+      </div>
+
+      <form id="submitFeatureForm" class="mt-4 space-y-3.5">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Title *</label>
+          <input type="text" id="featureTitle" required minlength="3" maxlength="120" placeholder="e.g. Export roadmap to CSV" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Category *</label>
+            <select id="featureCategory" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+              <option value="feature">Feature</option>
+              <option value="enhancement">Enhancement</option>
+              <option value="bug">Bug</option>
+              <option value="ui/ux">UI / UX</option>
+              <option value="integration">Integration</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-600 mb-1">Your Name</label>
+            <input type="text" id="featureAuthor" placeholder="e.g. Snehil Mainan" class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Description *</label>
+          <textarea id="featureDescription" required minlength="5" rows="4" placeholder="Briefly describe what this feature would do..." class="w-full px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/20 resize-none"></textarea>
+        </div>
+
+        <div class="pt-3 flex items-center justify-end space-x-2 border-t border-slate-100">
+          <button type="button" id="cancelSubmitBtn" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl">Cancel</button>
+          <button type="submit" id="submitFormBtn" class="px-4 py-2 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-xs">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Detail & Discussion Modal -->
+  <div id="detailModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs hidden opacity-0 transition-opacity duration-150">
+    <div class="bg-white rounded-2xl max-w-xl w-full p-6 shadow-xl border border-slate-200 transform scale-95 transition-transform duration-150 max-h-[85vh] flex flex-col" id="detailModalContent">
+      <div class="flex items-start justify-between pb-3 border-b border-slate-100 gap-3">
+        <div>
+          <span id="detailCategoryBadge" class="text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider"></span>
+          <h3 id="detailTitle" class="text-base sm:text-lg font-bold text-slate-900 mt-1.5 leading-snug"></h3>
+        </div>
+        <button id="closeDetailModalBtn" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">✕</button>
+      </div>
+
+      <div class="overflow-y-auto flex-1 py-4 space-y-4">
+        <p id="detailDescription" class="text-slate-700 text-xs sm:text-sm leading-relaxed whitespace-pre-wrap"></p>
+
+        <div class="flex items-center justify-between text-xs text-slate-500 bg-slate-50 p-3 rounded-xl">
+          <div>By <strong class="text-slate-700" id="detailAuthor"></strong> · <span id="detailDate"></span></div>
+          <div><strong class="text-slate-700" id="detailVoteCount">0</strong> votes</div>
+        </div>
+
+        <!-- Discussion -->
+        <div class="space-y-3 pt-2">
+          <h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider flex items-center space-x-1.5">
+            <span>Comments</span>
+            <span id="commentCountBadge" class="px-1.5 py-0.2 rounded-full bg-slate-100 text-[10px]">0</span>
+          </h4>
+
+          <div id="commentList" class="space-y-2"></div>
+
+          <form id="commentForm" class="pt-2 space-y-2">
+            <input type="text" id="commentAuthorInput" placeholder="Your name (optional)" class="w-1/3 px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200 text-xs">
+            <div class="flex items-center space-x-2">
+              <input type="text" id="commentContentInput" required minlength="2" placeholder="Add a comment..." class="flex-1 px-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs sm:text-sm focus:outline-none focus:ring-1 focus:ring-brand-500">
+              <button type="submit" class="px-4 py-2 text-xs font-semibold text-white bg-brand-600 hover:bg-brand-700 rounded-xl shrink-0">Reply</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed bottom-4 right-4 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-5 text-center text-xs text-slate-500 mt-auto">
+    <div class="max-w-5xl mx-auto px-4 flex items-center justify-between">
+      <span>UpVote · Built with Node.js REST API</span>
+      <span class="text-slate-400">Zero Dependencies · Clean Architecture</span>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

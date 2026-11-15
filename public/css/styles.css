@@ -1,0 +1,131 @@
+/* UpVote — Clean, Modern, Minimalist Design */
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+/* Upvote Pill Button */
+.upvote-btn {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  transition: all 0.15s ease;
+}
+
+.upvote-btn:hover {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #334155;
+  transform: translateY(-1px);
+}
+
+.upvote-btn.voted {
+  background-color: #4f46e5;
+  border-color: #4f46e5;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.25);
+}
+
+.upvote-btn.voted:hover {
+  background-color: #4338ca;
+}
+
+/* Feature Cards */
+.feature-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  transition: all 0.15s ease;
+}
+
+.feature-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+  transform: translateY(-1px);
+}
+
+/* Category Badges */
+.badge-cat-feature {
+  background-color: #ede9fe;
+  color: #6d28d9;
+}
+.badge-cat-bug {
+  background-color: #fee2e2;
+  color: #b91c1c;
+}
+.badge-cat-enhancement {
+  background-color: #d1fae5;
+  color: #047857;
+}
+.badge-cat-ui-ux {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+.badge-cat-integration {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+/* Status Badges */
+.status-pill-under-review {
+  background-color: #fffbeb;
+  color: #b45309;
+  border: 1px solid #fef3c7;
+}
+.status-pill-planned {
+  background-color: #f0f9ff;
+  color: #0369a1;
+  border: 1px solid #e0f2fe;
+}
+.status-pill-in-progress {
+  background-color: #eef2ff;
+  color: #4338ca;
+  border: 1px solid #e0e7ff;
+}
+.status-pill-completed {
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #d1fae5;
+}
+
+/* Status Filter Tabs */
+.filter-tab {
+  color: #64748b;
+  background: transparent;
+  transition: all 0.15s ease;
+}
+
+.filter-tab:hover {
+  color: #0f172a;
+  background-color: #f1f5f9;
+}
+
+.filter-tab.active {
+  color: #4f46e5;
+  background-color: #eef2ff;
+}
+
+/* Toast */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.toast {
+  animation: slideUp 0.2s ease forwards;
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
